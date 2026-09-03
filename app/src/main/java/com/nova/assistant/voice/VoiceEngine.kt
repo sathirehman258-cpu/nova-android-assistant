@@ -10,7 +10,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
-import kotlinx.coroutines.isActive
 
 data class VoiceSettings(
     val speakingRate: Float = 1.0f,
@@ -76,10 +75,10 @@ class AndroidTtsVoiceEngine @Inject constructor(
             engine.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
                 override fun onStart(utteranceId: String?) {}
                 override fun onDone(utteranceId: String?) {
-                    if (cont.context.isActive) cont.resume(Unit)
+                    runCatching { cont.resume(Unit) }
                 }
                 override fun onError(utteranceId: String?) {
-                    if (cont.context.isActive) cont.resume(Unit)
+                    runCatching { cont.resume(Unit) }
                 }
             })
             engine.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId)

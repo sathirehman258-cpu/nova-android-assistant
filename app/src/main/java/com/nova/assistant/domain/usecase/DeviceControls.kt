@@ -15,13 +15,15 @@ class DeviceControls @Inject constructor(
     private val audioManager get() = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
     private val cameraManager get() = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
 
-    fun setFlashlight(on: Boolean): ActionResult = try {
-        val cameraId = cameraManager.cameraIdList.firstOrNull()
-            ?: return ActionResult(ActionStatus.NOT_SUPPORTED, "No flashlight found on this device.")
-        cameraManager.setTorchMode(cameraId, on)
-        ActionResult(ActionStatus.SUCCESS, if (on) "Flashlight on." else "Flashlight off.")
-    } catch (e: Exception) {
-        ActionResult(ActionStatus.FAILED, "Couldn't control the flashlight: ${e.message}")
+    fun setFlashlight(on: Boolean): ActionResult {
+        return try {
+            val cameraId = cameraManager.cameraIdList.firstOrNull()
+                ?: return ActionResult(ActionStatus.NOT_SUPPORTED, "No flashlight found on this device.")
+            cameraManager.setTorchMode(cameraId, on)
+            ActionResult(ActionStatus.SUCCESS, if (on) "Flashlight on." else "Flashlight off.")
+        } catch (e: Exception) {
+            ActionResult(ActionStatus.FAILED, "Couldn't control the flashlight: ${e.message}")
+        }
     }
 
     fun setVolume(stream: String, percent: Int): ActionResult {
