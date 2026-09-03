@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Nova</string>
+    <string name="accessibility_service_description">
+        Nova uses this to see on-screen buttons and text so it can carry out commands you speak,
+        like opening an app or sending a message. Nova only acts on things visible on your screen
+        and only when you ask it to.
+    </string>
+</resources>
