@@ -2,6 +2,7 @@ package com.nova.assistant.permissions
 
 import android.Manifest
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.provider.Settings
@@ -29,7 +30,7 @@ enum class NovaCapability(val explanation: String) {
  */
 @Singleton
 class PermissionCenter @Inject constructor(
-    private val context: Context
+    @ApplicationContext private val context: Context
 ) {
     fun isGranted(manifestPermission: String): Boolean =
         ContextCompat.checkSelfPermission(context, manifestPermission) == PackageManager.PERMISSION_GRANTED

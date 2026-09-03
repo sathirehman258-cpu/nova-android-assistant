@@ -1,6 +1,7 @@
 package com.nova.assistant.voice
 
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
 import android.speech.tts.Voice
@@ -36,7 +37,7 @@ interface VoiceEngine {
 
 @Singleton
 class AndroidTtsVoiceEngine @Inject constructor(
-    context: Context
+    @ApplicationContext context: Context
 ) : VoiceEngine {
 
     private var tts: TextToSpeech? = null

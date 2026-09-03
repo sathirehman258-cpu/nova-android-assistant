@@ -1,6 +1,7 @@
 package com.nova.assistant.domain.usecase
 
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import android.content.Intent
 import com.nova.assistant.domain.model.ActionResult
 import com.nova.assistant.domain.model.ActionStatus
@@ -16,7 +17,7 @@ data class InstalledApp(val label: String, val packageName: String)
  */
 @Singleton
 class AppManager @Inject constructor(
-    private val context: Context
+    @ApplicationContext private val context: Context
 ) {
     private var cachedIndex: List<InstalledApp>? = null
 

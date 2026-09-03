@@ -1,6 +1,7 @@
 package com.nova.assistant.voice
 
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognitionListener
@@ -30,7 +31,7 @@ sealed class SttEvent {
  */
 @Singleton
 class SpeechRecognizerManager @Inject constructor(
-    private val context: Context
+    @ApplicationContext private val context: Context
 ) {
     private var recognizer: SpeechRecognizer? = null
     private var retryCount = 0

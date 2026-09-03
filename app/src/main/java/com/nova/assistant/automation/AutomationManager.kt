@@ -1,6 +1,7 @@
 package com.nova.assistant.automation
 
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import androidx.work.Constraints
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
@@ -29,7 +30,7 @@ enum class TriggerType { TIME_DAILY, TIME_ONCE, EVENT_BASED }
  */
 @Singleton
 class AutomationManager @Inject constructor(
-    private val context: Context
+    @ApplicationContext private val context: Context
 ) {
     private val maxRules = 20
     private val rules = mutableListOf<AutomationRule>()

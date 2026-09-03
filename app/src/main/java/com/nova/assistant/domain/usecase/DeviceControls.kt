@@ -1,6 +1,7 @@
 package com.nova.assistant.domain.usecase
 
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import android.hardware.camera2.CameraManager
 import android.media.AudioManager
 import com.nova.assistant.domain.model.ActionResult
@@ -10,7 +11,7 @@ import javax.inject.Singleton
 
 @Singleton
 class DeviceControls @Inject constructor(
-    private val context: Context
+    @ApplicationContext private val context: Context
 ) {
     private val audioManager get() = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
     private val cameraManager get() = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
